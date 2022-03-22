@@ -238,11 +238,14 @@ export default {
       // ...
     },
     //元素改变
-    async onElementChanged() {
+    onElementChanged(){
+      this.elementChanged(); //这个地方为了避免拖拽时候  content-pad不渲染的问题  可能是由于异步事件与event监听事件有冲突
+    },
+    async elementChanged(){
       const result = await this.bpmnModeler.saveXML({ format: true });
       const { xml } = result;
       // console.log('元素改变',xml);
-      //将xml转化成json
+      // //将xml转化成json
       await this.xml2jsonTransfer(this.$x2js.xml2js(xml))
       //将json转化成xml
       // this.json2xmlTransfer(this.canvasData)
