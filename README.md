@@ -1,4 +1,4 @@
-# y
+# bpmn-demo
 
 > A Vue.js project
 
