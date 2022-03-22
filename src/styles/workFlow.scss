@@ -1,0 +1,233 @@
+@import 'bpmn-js/dist/assets/diagram-js.css'; // 左边工具栏以及编辑节点的样式
+@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn.css';
+@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css';
+@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
+@import 'diagram-js-minimap/assets/diagram-js-minimap.css';
+@import 'diagram-js-minimap/assets/diagram-js-minimap.css'; //小地图的样式
+$lineColorNormal: #9e9e9e; //线和箭头的颜色
+
+.djs-container {
+
+  //节点颜色控制
+  .djs-element {
+
+    // 节点选中
+    &.selected {
+      cursor: move;
+
+      >.djs-outline {
+        stroke-dasharray: 0 !important;
+        stroke: $lineColorNormal;
+      }
+    }
+
+    // 鼠标移上去
+    &.hover {
+      cursor: move;
+
+      >.djs-outline {
+        stroke-dasharray: 0 !important;
+        stroke: $lineColorNormal;
+      }
+    }
+  }
+
+  // 拖拽时水平线颜色控制
+  .djs-drag-active {
+    path {
+      stroke: $lineColorNormal !important;
+      marker-end: url(#sequenceflow-arrow-normal) !important;
+    }
+  }
+
+  // 拖拽时候节点和label颜色控制
+  .djs-dragger * {
+    fill: none !important;
+    stroke: $lineColorNormal !important;
+  }
+
+  .djs-dragger tspan,
+  .djs-dragger text {
+    fill: $lineColorNormal !important;
+    stroke: none !important;
+  }
+
+  // 线的样式
+  .djs-connection {
+
+    // 平常的样式
+    path {
+      stroke: $lineColorNormal !important;
+      marker-end: url(#sequenceflow-arrow-normal) !important;
+    }
+
+    // 选择时的样式
+    &.selected {
+      path {
+        stroke: $lineColorNormal !important;
+        marker-end: url(#sequenceflow-arrow-active) !important;
+      }
+
+      .djs-outline {
+        stroke-dasharray: 0 !important;
+        stroke: #9e9e9e;
+      }
+    }
+  }
+
+  //线上点的样式
+  .djs-bendpoint .djs-visual,
+  .djs-segment-dragger:hover .djs-visual {
+    fill: none !important;
+    stroke: none !important;
+  }
+
+  //label边框处理
+  .djs-direct-editing-parent {
+    box-sizing: initial !important;
+    margin: -1px;
+  }
+
+  // 备注上点的颜色
+  .djs-resizer-visual {
+    stroke-opacity: 0 !important;
+    fill: none !important;
+  }
+
+  // 小地图
+  .djs-minimap {
+    .toggle {
+      &:before {
+        content: '小地图';
+      }
+
+      &:hover {
+        content: '';
+      }
+    }
+
+    &.open {
+      .toggle {
+        &:before {
+          content: '关闭';
+        }
+
+        &:hover {
+          content: '';
+        }
+      }
+    }
+  }
+}
+
+//箭头id 定义颜色
+#sequenceflow-arrow-normal {
+  fill: $lineColorNormal;
+  stroke: $lineColorNormal;
+}
+
+#sequenceflow-arrow-active {
+  fill: $lineColorNormal;
+  stroke: $lineColorNormal;
+}
+
+// 隐藏bpmn的logo
+.bjs-powered-by {
+  display: none;
+}
+
+//自定义左边工具栏的样式
+.custom-palette {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #f5f5f5;
+  width: 300px;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+  z-index: 1;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  box-sizing: border-box;
+
+  .custom-palette-entries {
+    span {
+      font-size: 14px;
+      font-style: initial;
+      cursor: move;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .groupLabel {
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      width: 100%t;
+      cursor: pointer;
+
+      .el-icon-arrow-down,
+      .el-icon-arrow-right {
+        margin-right: 10px;
+      }
+
+      .el-icon-folder {
+        font-size: 13px;
+        flex: 1;
+        width: calc(100% - 30px);
+        display: flex;
+
+        >i {
+          margin-left: 6px;
+          width: calc(100% - 20px);
+          display: flex;
+
+          span {
+            cursor: pointer !important;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .entry {
+      margin-left: 30px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+
+      .el-icon-document {
+        font-size: 14px;
+        margin-right: 6px;
+      }
+
+      span {
+        flex: 1;
+        width: 100%;
+      }
+    }
+  }
+}
+
+//自定义contentPad样式
+.djs-context-pad {
+  .entry {
+    //隐藏djs-context-pad不必要的图标
+    &.bpmn-icon-connection-multi,
+    &.bpmn-icon-trash,
+    &.bpmn-icon-screw-wrench,
+    &.bpmn-icon-end-event-none,
+    &.bpmn-icon-gateway-none,
+    &.bpmn-icon-task,
+    &.bpmn-icon-intermediate-event-none {
+      display: none;
+    }
+  }
+}
+// 测边框的样式
+.draw-box {
+  padding: 20px !important;
+}

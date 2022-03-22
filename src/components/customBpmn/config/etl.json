@@ -1,0 +1,38 @@
+{
+    "name": "etl",
+    "uri": "http://etl.org/bpmn",
+    "prefix": "etl",
+    "xml": {
+      "tagAlias": "lowerCase"
+    },
+    "associations": [],
+    "types": [
+      {
+        "name": "Start",
+        "superClass": ["bpmn:UserTask"],
+        "properties": []
+      },
+      {
+        "name": "Gateway",
+        "superClass": ["bpmn:UserTask"],
+        "properties": [
+          {
+            "name": "suitable",
+            "isAttr": true,
+            "type": "Integer"
+          }
+        ]
+      },
+      {
+        "name": "Task",
+        "superClass": ["bpmn:UserTask"],
+        "properties": []
+      },
+      {
+        "name": "End",
+        "superClass": ["bpmn:UserTask"],
+        "properties": []
+      }
+    ],
+    "emumerations": []
+  }
